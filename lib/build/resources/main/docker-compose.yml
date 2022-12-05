@@ -1,0 +1,20 @@
+version: '3.8'
+services:             
+    inventorySystem-mysql:
+        image: mysql:8.0
+        container_name: inventorySystem-mysql
+        restart: always
+        environment:
+            MYSQL_DATABASE: 'inventorySystem'
+            MYSQL_USER: 'team22'
+            MYSQL_PASSWORD: '310pw'            
+            MYSQL_ROOT_PASSWORD: '310pw'
+        ports:
+            - '3306:3306'
+        expose:
+            - '3306'   
+        volumes:
+            - mysql-db:/var/lib/mysql
+            - ./ddl:/docker-entrypoint-initdb.d
+volumes: 
+    mysql-db:
